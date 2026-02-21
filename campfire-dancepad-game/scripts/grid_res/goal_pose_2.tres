@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="grid_res" format=3 uid="uid://dkloinp3tohj4"]
+
+[ext_resource type="Script" uid="uid://doogdw7tyadqx" path="res://scripts/grid_res/grid_res.gd" id="1_akva7"]
+
+[resource]
+script = ExtResource("1_akva7")
+blocked = Array[Vector2i]([Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1), Vector2i(2, 2)])
+metadata/_custom_type_script = "uid://doogdw7tyadqx"

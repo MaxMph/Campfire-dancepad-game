@@ -5,15 +5,16 @@ extends Node
 var blocked = []#[Vector2i(1,1), Vector2i(1,2), Vector2i(2,2)]
 var points_per = 1
 
+var points = 0
+
+@export var poses: Array[grid_res] = []
 @export var pose: grid_res
 
 var awaiting_input = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	for i in pose.blocked:
-		blocked.append(i)
-
+	reset()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -21,6 +22,17 @@ func _process(delta: float) -> void:
 	if awaiting_input:
 		check_input()
 	
+
+func reset():
+	rand_pose()
+	blocked.clear()
+	for i in pose.blocked:
+		blocked.append(i)
+	show_blocked()
+
+
+func rand_pose():
+	pose = poses[randi_range(0, poses.size() - 1)]
 
 func check_input():
 	var hit = null
@@ -56,13 +68,28 @@ func hit(square):
 	
 	if was_blocked == false:
 		print("goal!")
+		points += points_per
+		$"../CanvasLayer/Control/Label".text = str(points)
 	
+	reset()
 
-#func show_blocked():
+func show_blocked():
+	for z in $"../CanvasLayer/Control/GridContainer".get_children():
+		z.modulate = Color.WHITE
+	
+	for i in blocked:
+		#print("colored")
+		for x in $"../CanvasLayer/Control/GridContainer".get_children():
+			if i == x.grid_cords:
+				x.modulate = Color.BLACK
 	#for i in $"../CanvasLayer/Control/GridContainer".get_children()
 	#for i in 9:
-		#$"../CanvasLayer/Control/GridContainer".get_child()
-#
+		#$"../CanvasLayer/Control/GridContainer".get_child(i)
+		
+	
+	#for i in blocked:
+		#if i == 
+
 #func create_grid():
 	#for x in grid_size:
 		#var grid_array_point = Vector2.ZERO
