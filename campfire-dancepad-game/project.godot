@@ -15,6 +15,11 @@ run/main_scene="uid://blp8kkxt0unja"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
+[display]
+
+window/stretch/mode="canvas_items"
+window/stretch/aspect="ignore"
+
 [input]
 
 top_left={

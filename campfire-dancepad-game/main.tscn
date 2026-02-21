@@ -7,6 +7,10 @@
 [ext_resource type="Resource" uid="uid://dkloinp3tohj4" path="res://scripts/grid_res/goal_pose_2.tres" id="4_272bh"]
 [ext_resource type="Resource" uid="uid://bscsgqmsktnwf" path="res://scripts/grid_res/goal_pose_3.tres" id="5_5vw27"]
 [ext_resource type="Resource" uid="uid://dm1rc7c7g7x0l" path="res://scripts/grid_res/goal_pose_4.tres" id="6_272bh"]
+[ext_resource type="PackedScene" uid="uid://5jwoo43xgdd1" path="res://points.tscn" id="7_5vw27"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_272bh"]
+font_size = 36
 
 [node name="main" type="Node2D" unique_id=1006754745]
 
@@ -14,6 +18,9 @@
 script = ExtResource("1_ig7tw")
 poses = Array[ExtResource("2_7mycd")]([ExtResource("2_0xm2m"), ExtResource("4_272bh"), ExtResource("5_5vw27"), ExtResource("6_272bh")])
 pose = ExtResource("2_0xm2m")
+players = null
+turn = null
+points_ui = ExtResource("7_5vw27")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=366595998]
 
@@ -41,12 +48,14 @@ grow_vertical = 2
 columns = 3
 
 [node name="Panel" type="Panel" parent="CanvasLayer/Control/GridContainer" unique_id=1540599157]
+modulate = Color(18.892157, 0, 0, 1)
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 script = ExtResource("3_h2yge")
 grid_cords = Vector2i(1, 3)
 
 [node name="Panel2" type="Panel" parent="CanvasLayer/Control/GridContainer" unique_id=768277502]
+modulate = Color(0.17937116, 0.17937116, 0.17937116, 1)
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 script = ExtResource("3_h2yge")
@@ -94,18 +103,46 @@ layout_mode = 2
 script = ExtResource("3_h2yge")
 grid_cords = Vector2i(3, 1)
 
-[node name="Label" type="Label" parent="CanvasLayer/Control" unique_id=673445138]
+[node name="score" type="HBoxContainer" parent="CanvasLayer/Control" unique_id=1977609590]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -20.0
-offset_top = 57.0
+offset_top = 41.0
 offset_right = 20.0
-offset_bottom = 80.0
+offset_bottom = 81.0
 grow_horizontal = 2
-text = "0"
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Control" unique_id=1341847623]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.23921569, 0.6862745, 0.6862745, 1)
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/ColorRect" unique_id=169040659]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -21.5
+offset_top = -25.0
+offset_right = 21.5
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "p1"
+label_settings = SubResource("LabelSettings_272bh")
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Node" type="Node" parent="." unique_id=774514042]
 
