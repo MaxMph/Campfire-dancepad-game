@@ -109,9 +109,10 @@ func post_shot(hit = Vector2i.ZERO, scored = -1):
 				print("goal!")
 				$"../CanvasLayer/Control/score".get_child(turn - 1).add_points(1)
 				get_ui_square(hit).modulate = Color(0.0, 18.892, 0.0)
-				
+				$"../Node/goal".play()
 			else:
 				get_ui_square(hit).modulate = Color(18.892, 0.0, 0.0)
+				$"../Node/miss".play()
 		
 		print(get_ui_square(hit).modulate)
 		
