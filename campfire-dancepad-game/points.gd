@@ -1,17 +1,14 @@
 extends Control
 
 var points = 0
+var player_num
 
 func _ready() -> void:
-	pass
+	%"points label".text = "P" + str(player_num) + ": " + str(points)
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 
 func add_points(a: int):
 	points += 1
-	$"points 1".text = str(points)
+	%"points label".text = "P" + str(player_num) + ": " + str(points)
 	if points >= 6:
 		get_tree().change_scene_to_file("res://ui/main_menu.tscn")

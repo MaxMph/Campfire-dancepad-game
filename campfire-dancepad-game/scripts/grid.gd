@@ -9,7 +9,7 @@ var blocked = []
 @export var poses: Array[grid_res] = []
 @export var pose: grid_res
 
-@export var players: int = 4
+@export var players: int = 2
 @export var turn: int = 0
 
 @export var points_ui: PackedScene
@@ -21,7 +21,10 @@ func _ready() -> void:
 	turn_intro()
 	for i in players:
 		var new_points = points_ui.instantiate()
+		new_points.player_num = i + 1
 		$"../CanvasLayer/Control/score".add_child(new_points)
+	
+	color_scoreboard()
 
 func _process(delta: float) -> void:
 	if awaiting_input:
@@ -42,10 +45,20 @@ func turn_intro():
 		reset()
 	turn += 1
 	$"../CanvasLayer/Control/ColorRect/Label".text = "player " + str(turn) + "'s turn"
+	color_scoreboard()
 	$"../CanvasLayer/Control/ColorRect".show()
 	await get_tree().create_timer(1.5).timeout
 	$"../CanvasLayer/Control/ColorRect".hide()
 	awaiting_input = true
+
+func color_scoreboard():
+	for i in $"../CanvasLayer/Control/score".get_children():
+		i.modulate = Color.WHITE
+	#$"../CanvasLayer/Control/score".get_child(turn - 1).modulate = Color(0.0, 3.705, 0.0)
+	for i in $"../CanvasLayer/Control/score".get_children():
+		if i.player_num == turn:
+			
+			i.modulate = Color(0.0, 3.705, 0.0)
 
 func rand_pose():
 	 
@@ -75,9 +88,9 @@ func check_input():
 	if Input.is_action_just_pressed("top_right"):
 		hit(Vector2i(3,3))
 	
-	if Input.is_action_just_pressed("ui_select"):
-		hit(Vector2i(1, 3))
-
+	#if Input.is_action_just_pressed("ui_select"):
+		#hit(Vector2i(1, 3))
+ 
 
 func hit(square):
 	awaiting_input = false
@@ -113,7 +126,6 @@ func post_shot(hit = Vector2i.ZERO, scored = -1):
 			else:
 				get_ui_square(hit).modulate = Color(18.892, 0.0, 0.0)
 				$"../Node/miss".play()
-		
 		print(get_ui_square(hit).modulate)
 		
 	await get_tree().create_timer(1).timeout

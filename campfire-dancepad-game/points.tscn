@@ -2,16 +2,22 @@
 
 [ext_resource type="Script" uid="uid://xrjwjflec7ws" path="res://points.gd" id="1_n31ie"]
 
-[node name="Points" type="Control" unique_id=1914951695]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Points" type="AspectRatioContainer" unique_id=2009431677]
+offset_right = 96.0
+offset_bottom = 23.0
 script = ExtResource("1_n31ie")
 
-[node name="points 1" type="Label" parent="." unique_id=27291450]
-layout_mode = 0
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=80037292]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_right = 4
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer" unique_id=87763179]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+
+[node name="points label" type="Label" parent="MarginContainer/PanelContainer" unique_id=27291450]
+unique_name_in_owner = true
+layout_mode = 2
 text = "0"
 horizontal_alignment = 1
