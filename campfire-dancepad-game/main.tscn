@@ -10,7 +10,10 @@
 [ext_resource type="AudioStream" uid="uid://c8mqs6qcse6qh" path="res://sound/dragon-studio-correct-472358.mp3" id="9_4c57u"]
 [ext_resource type="AudioStream" uid="uid://pfb5qw08dril" path="res://sound/freesound_community-wrong-47985.mp3" id="10_efxa6"]
 [ext_resource type="Texture2D" uid="uid://bfl50ofd1hhpu" path="res://art/IMG_1317.png" id="11_dg77c"]
+[ext_resource type="Texture2D" uid="uid://brlgaii3cvgyo" path="res://art/soccer/IMG_7541.png" id="12_w48qg"]
 [ext_resource type="Texture2D" uid="uid://cofknliplcn5w" path="res://art/IMG_1316.png" id="12_ycdy4"]
+[ext_resource type="Texture2D" uid="uid://dijcqdlxvpdgq" path="res://art/soccer/IMG_7542.png" id="13_vivmo"]
+[ext_resource type="Texture2D" uid="uid://8oytysisy0l6" path="res://art/soccer/IMG_7544.png" id="14_2cqfq"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_dg77c"]
 font_size = 26
@@ -187,5 +190,27 @@ texture = ExtResource("12_ycdy4")
 [node name="round timer" type="Timer" parent="." unique_id=918648683]
 wait_time = 6.0
 one_shot = true
+
+[node name="Node2D" type="Node2D" parent="." unique_id=1453050037]
+position = Vector2(584, 374)
+scale = Vector2(0.2, 0.2)
+
+[node name="Img7541" type="Sprite2D" parent="Node2D" unique_id=892369603]
+visible = false
+position = Vector2(240, 115)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("12_w48qg")
+
+[node name="Img7542" type="Sprite2D" parent="Node2D" unique_id=2106771802]
+visible = false
+position = Vector2(-305, 80)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("13_vivmo")
+flip_h = true
+
+[node name="Img7544" type="Sprite2D" parent="Node2D" unique_id=497138182]
+position = Vector2(-9.999999, 394.99997)
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("14_2cqfq")
 
 [connection signal="timeout" from="round timer" to="grid" method="_on_round_timer_timeout"]

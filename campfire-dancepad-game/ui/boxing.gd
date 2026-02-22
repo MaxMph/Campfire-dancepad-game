@@ -104,6 +104,9 @@ func show_target():
 
 func hit(square):
 	
+	$"../Node2D/punch".flip_h = !$"../Node2D/punch".flip_h
+	$"../Node2D/hit".flip_h = !$"../Node2D/hit".flip_h 
+	
 	if square == target:
 		#get_ui_square(turn - 1)
 		$"../CanvasLayer/Control/score".get_child(turn - 1).add_points(1)
@@ -112,7 +115,7 @@ func hit(square):
 		$"../Node2D/hit".show()
 	else:
 		#$"../CanvasLayer/Control/score".get_child(turn - 1).add_points(-1)
-		$"../Node/miss".play()
+		$"../Node/shoosh".play()
 		$"../Node2D/punch".show()
 		$"../Node2D/hit".hide()
 	

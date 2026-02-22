@@ -133,6 +133,7 @@ func post_shot(hit = Vector2i.ZERO, scored = -1):
 		print(get_ui_square(hit).modulate)
 		
 	await get_tree().create_timer(1).timeout
+	$"../round timer".paused = false
 	$"../round timer".start()
 	
 	for i in $"../CanvasLayer/Control/score".get_children():
