@@ -1,0 +1,142 @@
+[gd_scene format=3 uid="uid://bc2v6epyi1bhq"]
+
+[ext_resource type="Texture2D" uid="uid://3xnnkf8hev6l" path="res://art/image-bg.png" id="1_fw7fs"]
+[ext_resource type="FontFile" uid="uid://byhfb5v2g2cah" path="res://assets/Game Paused.otf" id="2_0v6m2"]
+[ext_resource type="FontFile" uid="uid://1tyum844bw5h" path="res://art/FreckleFace-Regular.ttf" id="3_0577m"]
+
+[sub_resource type="GDScript" id="GDScript_8jhgu"]
+script/source = "extends Node2D
+
+var player_count: int = 1
+const MIN_PLAYERS: int = 1
+const MAX_PLAYERS: int = 4
+
+@onready var count_label = $Label2
+@onready var add_area = $AddButton
+@onready var remove_area = $RemoveButton
+
+func _ready():
+	update_label()
+	add_area.input_event.connect(_on_add_area_input)
+	remove_area.input_event.connect(_on_remove_area_input)
+	add_area.mouse_entered.connect(func(): $AddButton/ColorRect4.modulate = Color(1.3, 1.3, 1.3))
+	add_area.mouse_exited.connect(func(): $AddButton/ColorRect4.modulate = Color(1, 1, 1))
+	remove_area.mouse_entered.connect(func(): $RemoveButton/ColorRect3.modulate = Color(1.3, 1.3, 1.3))
+	remove_area.mouse_exited.connect(func(): $RemoveButton/ColorRect3.modulate = Color(1, 1, 1))
+
+func _on_add_area_input(viewport, event, shape_idx):
+	print(\"add area clicked\")
+	if event is InputEventMouseButton:
+		print(\"it's a mouse event\")
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			if player_count < MAX_PLAYERS:
+				player_count += 1
+				update_label()
+
+func _on_remove_area_input(viewport, event, shape_idx):
+	print(\"remove area clicked\")
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			if player_count > MIN_PLAYERS:
+				player_count -= 1
+				update_label()
+
+func update_label():
+	count_label.text = str(player_count)
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ooc05"]
+size = Vector2(131, 54.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mqnc8"]
+size = Vector2(131, 124.75)
+
+[sub_resource type="GDScript" id="GDScript_ooc05"]
+script/source = "extends Button
+
+func _on_start_pressed():
+	get_tree().change_scene_to_file(\"res://scenes/main.tscn\")
+"
+
+[node name="player-selection" type="Node2D" unique_id=14772379]
+script = SubResource("GDScript_8jhgu")
+metadata/_edit_horizontal_guides_ = [-7.0]
+
+[node name="ColorRect2" type="ColorRect" parent="." unique_id=2041845137]
+offset_left = 193.0
+offset_top = 90.0
+offset_right = 937.0
+offset_bottom = 599.0
+mouse_filter = 2
+color = Color(0.45135772, 0.00021620333, 0.47774595, 1)
+
+[node name="ImageBg" type="Sprite2D" parent="." unique_id=342038918]
+position = Vector2(555, 340.625)
+scale = Vector2(1.3279222, 1.4388888)
+texture = ExtResource("1_fw7fs")
+
+[node name="RemoveButton" type="Area2D" parent="." unique_id=893641733]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RemoveButton" unique_id=1457389464]
+position = Vector2(336.5, 381.75)
+shape = SubResource("RectangleShape2D_ooc05")
+
+[node name="ColorRect3" type="ColorRect" parent="RemoveButton" unique_id=292587159]
+offset_left = 276.0
+offset_top = 369.0
+offset_right = 396.0
+offset_bottom = 398.0
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="." unique_id=1182160746]
+offset_left = 243.0
+offset_top = 172.0
+offset_right = 883.0
+offset_bottom = 288.0
+theme_override_colors/font_color = Color(0.7910143, 0.836654, 1.540184e-06, 1)
+theme_override_fonts/font = ExtResource("2_0v6m2")
+theme_override_font_sizes/font_size = 73
+text = "number of players"
+autowrap_mode = 2
+
+[node name="AddButton" type="Area2D" parent="." unique_id=524919073]
+
+[node name="ColorRect4" type="ColorRect" parent="AddButton" unique_id=690826268]
+offset_left = 679.0
+offset_top = 370.0
+offset_right = 804.0
+offset_bottom = 391.0
+mouse_filter = 2
+
+[node name="ColorRect4" type="ColorRect" parent="AddButton/ColorRect4" unique_id=525522497]
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 2.959
+offset_left = 53.0
+offset_top = -52.0
+offset_right = 76.0
+offset_bottom = 8.860996
+mouse_filter = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AddButton" unique_id=1940741277]
+position = Vector2(742.5, 379.625)
+shape = SubResource("RectangleShape2D_mqnc8")
+
+[node name="Label2" type="Label" parent="." unique_id=507090171]
+offset_left = 495.0
+offset_top = 233.0
+offset_right = 600.0
+offset_bottom = 527.0
+theme_override_fonts/font = ExtResource("3_0577m")
+theme_override_font_sizes/font_size = 238
+text = "1"
+
+[node name="Button" type="Button" parent="." unique_id=1175611249]
+offset_left = 394.0
+offset_top = 480.0
+offset_right = 702.0
+offset_bottom = 546.0
+theme_override_fonts/font = ExtResource("2_0v6m2")
+theme_override_font_sizes/font_size = 36
+text = "start the game!!!"
+script = SubResource("GDScript_ooc05")
