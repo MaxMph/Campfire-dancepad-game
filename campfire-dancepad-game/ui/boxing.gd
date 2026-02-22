@@ -22,17 +22,44 @@ func _ready() -> void:
 func show_score():
 	pass
 
+func points_recap():
+	$"../CanvasLayer/Control/ColorRect".show()
+	$"../CanvasLayer/Control/ColorRect/Label".hide() 
+	$"../CanvasLayer/Control/ColorRect/scored points".show()
+	$"../CanvasLayer/Control/ColorRect/scored points".text = "You scored " + str($"../CanvasLayer/Control/score".get_child(turn - 1).points)
+	await get_tree().create_timer(1).timeout
+	$"../CanvasLayer/Control/ColorRect/scored points".hide()
+	$"../CanvasLayer/Control/ColorRect".hide()
+	
+	turn_intro()
+	
+
+func win_screen():
+	var winner = 0 #$"../CanvasLayer/Control/score".get_child(i).points
+	for i in players:
+		if $"../CanvasLayer/Control/score".get_child(i).points > $"../CanvasLayer/Control/score".get_child(winner).points:
+			winner = i
+	$"../CanvasLayer/Control/ColorRect2/VBoxContainer/scored points".text = ""
+	$"../CanvasLayer/Control/ColorRect2".show()
+	$"../CanvasLayer/Control/ColorRect2/VBoxContainer/win".text = "Player " + str(winner + 1) + " Won!"
+	for i in players:
+		$"../CanvasLayer/Control/ColorRect2/VBoxContainer/scored points".text += "Player " + str(i + 1) + ": " + str($"../CanvasLayer/Control/score".get_child(i).points) + "\n"
+	
+
 func turn_intro():
 	show_target()
 	if turn == players:
-		get_tree().change_scene_to_file("res://ui/main_menu.tscn")
+		win_screen()
+		#get_tree().change_scene_to_file("res://ui/main_menu.tscn")
 		return
 	turn += 1
 	$"../CanvasLayer/Control/ColorRect/Label".text = "player " + str(turn) + "'s turn"
 	$"../CanvasLayer/Control/score".color_scoreboard(turn)
 	$"../CanvasLayer/Control/ColorRect".show()
+	$"../CanvasLayer/Control/ColorRect/Label".show()
 	await get_tree().create_timer(1.5).timeout
 	$"../CanvasLayer/Control/ColorRect".hide()
+	$"../CanvasLayer/Control/ColorRect/Label".hide()
 	awaiting_input = true
 	$"../round timer".start()
 
@@ -42,6 +69,10 @@ func _process(delta: float) -> void:
 	if awaiting_input:
 		check_input()
 	$"../CanvasLayer/Control/time".text = str(roundi($"../round timer".time_left))
+	
+	if Input.is_action_just_pressed("start"):
+		if $"../CanvasLayer/Control/ColorRect2".visible:
+			get_tree().change_scene_to_file("res://ui/main_menu.tscn")
 
 func check_input():
 	var hit = null
@@ -104,5 +135,7 @@ func get_ui_square(cords: Vector2i):
 
 
 func _on_round_timer_timeout() -> void:
-	turn_intro()
+	awaiting_input = false
 	$"../Node/miss".play()
+	points_recap()
+	

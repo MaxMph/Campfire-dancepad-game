@@ -13,6 +13,9 @@
 [sub_resource type="LabelSettings" id="LabelSettings_2kq6x"]
 font_size = 36
 
+[sub_resource type="LabelSettings" id="LabelSettings_ehw7s"]
+font_size = 60
+
 [node name="boxing" type="Node2D" unique_id=1053027048]
 
 [node name="grid" type="Node" parent="." unique_id=931421490]
@@ -100,6 +103,19 @@ layout_mode = 2
 script = ExtResource("1_hpvae")
 grid_cords = Vector2i(3, 1)
 
+[node name="time" type="Label" parent="CanvasLayer/Control" unique_id=790031548]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = 108.0
+offset_right = 20.0
+offset_bottom = 131.0
+grow_horizontal = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="score" type="HBoxContainer" parent="CanvasLayer/Control" unique_id=1932289727]
 layout_mode = 1
 anchors_preset = 5
@@ -122,9 +138,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.23921569, 0.6862745, 0.6862745, 1)
+color = Color(0.5058824, 0.11764706, 0.08627451, 1)
 
 [node name="Label" type="Label" parent="CanvasLayer/Control/ColorRect" unique_id=382120009]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -142,16 +159,58 @@ label_settings = SubResource("LabelSettings_2kq6x")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="time" type="Label" parent="CanvasLayer/Control" unique_id=790031548]
+[node name="scored points" type="Label" parent="CanvasLayer/Control/ColorRect" unique_id=1400196001]
+visible = false
 layout_mode = 1
-anchors_preset = 5
+anchors_preset = 8
 anchor_left = 0.5
+anchor_top = 0.5
 anchor_right = 0.5
-offset_left = -20.0
-offset_top = 108.0
-offset_right = 20.0
-offset_bottom = 131.0
+anchor_bottom = 0.5
+offset_left = -21.5
+offset_top = -25.0
+offset_right = 21.5
+offset_bottom = 25.0
 grow_horizontal = 2
+grow_vertical = 2
+text = "points"
+label_settings = SubResource("LabelSettings_2kq6x")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect2" type="ColorRect" parent="CanvasLayer/Control" unique_id=2143399012]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.61960787)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/ColorRect2" unique_id=1752750281]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -54.5
+offset_top = -50.5
+offset_right = 54.5
+offset_bottom = 50.5
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="win" type="Label" parent="CanvasLayer/Control/ColorRect2/VBoxContainer" unique_id=981323156]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_ehw7s")
+
+[node name="scored points" type="Label" parent="CanvasLayer/Control/ColorRect2/VBoxContainer" unique_id=1933833601]
+layout_mode = 2
+text = "asdf"
+label_settings = SubResource("LabelSettings_2kq6x")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -164,7 +223,7 @@ stream = ExtResource("2_i4iqw")
 stream = ExtResource("3_pa8ws")
 
 [node name="round timer" type="Timer" parent="." unique_id=559922903]
-wait_time = 20.0
+wait_time = 6.0
 one_shot = true
 
 [node name="Img1317" type="Sprite2D" parent="." unique_id=1597556803]
