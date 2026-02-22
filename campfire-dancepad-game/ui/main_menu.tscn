@@ -5,6 +5,9 @@
 [ext_resource type="Texture2D" uid="uid://d10e7je52tr2q" path="res://art/button.png" id="2_0dkrt"]
 [ext_resource type="PackedScene" uid="uid://blp8kkxt0unja" path="res://main.tscn" id="2_rmr83"]
 [ext_resource type="AudioStream" uid="uid://bygdcfj3ovbll" path="res://sound/arnav_geddada-ui-sound-374228.mp3" id="5_8uxxo"]
+[ext_resource type="Texture2D" uid="uid://c3igcccyxyv27" path="res://art/soccer/IMG_1329-removebg-preview.png" id="6_p8ri8"]
+[ext_resource type="Texture2D" uid="uid://csfk7ssahp6j7" path="res://art/soccer/IMG_1331-removebg-preview.png" id="6_ubpvv"]
+[ext_resource type="Texture2D" uid="uid://xesijvwmkep7" path="res://art/soccer/IMG_1330-removebg-preview.png" id="7_ubpvv"]
 
 [sub_resource type="Animation" id="Animation_rmr83"]
 length = 0.001
@@ -68,12 +71,6 @@ _data = {
 &"click": SubResource("Animation_wk0pr")
 }
 
-[sub_resource type="LabelSettings" id="LabelSettings_8uxxo"]
-font_size = 24
-
-[sub_resource type="LabelSettings" id="LabelSettings_ei257"]
-font_size = 24
-
 [node name="main menu" type="Control" unique_id=1147830968]
 layout_mode = 3
 anchors_preset = 15
@@ -120,31 +117,50 @@ stream = ExtResource("5_8uxxo")
 pitch_scale = 4.0
 
 [node name="VBoxContainer" type="HBoxContainer" parent="." unique_id=64369790]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -209.0
-offset_top = -188.0
-offset_right = -50.0
-offset_bottom = -116.0
-grow_horizontal = 2
-grow_vertical = 0
+visible = false
+layout_mode = 0
+offset_left = 36.0
+offset_top = 447.0
+offset_right = 805.0
+offset_bottom = 611.0
+theme_override_constants/separation = 0
+alignment = 1
 
-[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer" unique_id=440249443]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer" unique_id=1473812210]
 layout_mode = 2
 
-[node name="Soccer" type="Label" parent="VBoxContainer/PanelContainer" unique_id=1751625185]
+[node name="TextureRect2" type="TextureRect" parent="VBoxContainer/VBoxContainer" unique_id=26135147]
+custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
-text = "Soccer"
-label_settings = SubResource("LabelSettings_8uxxo")
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("6_ubpvv")
+expand_mode = 1
+stretch_mode = 4
+flip_h = true
 
-[node name="PanelContainer2" type="PanelContainer" parent="VBoxContainer" unique_id=14783817]
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/VBoxContainer" unique_id=1921757779]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+texture = ExtResource("6_p8ri8")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer" unique_id=1165931195]
 layout_mode = 2
 
-[node name="Boxing" type="Label" parent="VBoxContainer/PanelContainer2" unique_id=165032315]
+[node name="TextureRect3" type="TextureRect" parent="VBoxContainer/VBoxContainer2" unique_id=86081908]
+custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
-text = "Boxing"
-label_settings = SubResource("LabelSettings_ei257")
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("6_ubpvv")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="TextureRect2" type="TextureRect" parent="VBoxContainer/VBoxContainer2" unique_id=1494141952]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+texture = ExtResource("7_ubpvv")
+expand_mode = 1
+stretch_mode = 4
