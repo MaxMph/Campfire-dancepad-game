@@ -5,7 +5,6 @@
 [ext_resource type="Script" uid="uid://doogdw7tyadqx" path="res://scripts/grid_res/grid_res.gd" id="2_7mycd"]
 [ext_resource type="Script" uid="uid://dloym2gsk3q0d" path="res://scripts/grid_res/square.gd" id="3_h2yge"]
 [ext_resource type="Resource" uid="uid://dkloinp3tohj4" path="res://scripts/grid_res/goal_pose_2.tres" id="4_272bh"]
-[ext_resource type="Resource" uid="uid://bscsgqmsktnwf" path="res://scripts/grid_res/goal_pose_3.tres" id="5_5vw27"]
 [ext_resource type="Resource" uid="uid://dm1rc7c7g7x0l" path="res://scripts/grid_res/goal_pose_4.tres" id="6_272bh"]
 [ext_resource type="PackedScene" uid="uid://5jwoo43xgdd1" path="res://points.tscn" id="7_5vw27"]
 [ext_resource type="AudioStream" uid="uid://c8mqs6qcse6qh" path="res://sound/dragon-studio-correct-472358.mp3" id="9_4c57u"]
@@ -23,7 +22,7 @@ font_size = 36
 
 [node name="grid" type="Node" parent="." unique_id=394295006]
 script = ExtResource("1_ig7tw")
-poses = Array[ExtResource("2_7mycd")]([ExtResource("2_0xm2m"), ExtResource("4_272bh"), ExtResource("5_5vw27"), ExtResource("6_272bh")])
+poses = Array[ExtResource("2_7mycd")]([ExtResource("2_0xm2m"), ExtResource("4_272bh"), ExtResource("6_272bh")])
 pose = ExtResource("2_0xm2m")
 points_ui = ExtResource("7_5vw27")
 
@@ -97,6 +96,7 @@ script = ExtResource("3_h2yge")
 grid_cords = Vector2i(1, 1)
 
 [node name="Panel8" type="Panel" parent="CanvasLayer/Control/GridContainer" unique_id=2145532958]
+modulate = Color(3.9300976, 0, 0, 1)
 custom_minimum_size = Vector2(90, 90)
 layout_mode = 2
 script = ExtResource("3_h2yge")

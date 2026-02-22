@@ -155,10 +155,10 @@ func get_ui_square(cords: Vector2i):
 
 func show_blocked():
 	for z in $"../CanvasLayer/Control/GridContainer".get_children():
-		z.modulate =  Color.WHITE #Color(6.951, 3.662, 4.925) #Color(6.951, 0.004, 5.08)# Color.WHITE
+		z.modulate =  Color.BLACK#Color.WHITE #Color(6.951, 3.662, 4.925) #Color(6.951, 0.004, 5.08)# Color.WHITE
 	
 	for i in blocked:
-		get_ui_square(i).modulate = Color.BLACK 
+		get_ui_square(i).modulate = Color(3.93, 0.0, 0.0)# Color.BLACK 
 		#print("colored")
 		#for x in $"../CanvasLayer/Control/GridContainer".get_children():
 			#if i == x.grid_cords:
