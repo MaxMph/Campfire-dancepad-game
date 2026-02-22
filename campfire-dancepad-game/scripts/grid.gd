@@ -121,6 +121,7 @@ func post_shot(hit = Vector2i.ZERO, scored = -1):
 	
 	if hit != Vector2i.ZERO:
 		if scored != -1:
+			$"../round timer".paused = true
 			if scored == 1:
 				print("goal!")
 				$"../CanvasLayer/Control/score".get_child(turn - 1).add_points(1)
@@ -132,6 +133,7 @@ func post_shot(hit = Vector2i.ZERO, scored = -1):
 		print(get_ui_square(hit).modulate)
 		
 	await get_tree().create_timer(1).timeout
+	$"../round timer".start()
 	
 	for i in $"../CanvasLayer/Control/score".get_children():
 		if i.points >= 4:

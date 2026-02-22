@@ -68,6 +68,12 @@ _data = {
 &"click": SubResource("Animation_wk0pr")
 }
 
+[sub_resource type="LabelSettings" id="LabelSettings_8uxxo"]
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_ei257"]
+font_size = 24
+
 [node name="main menu" type="Control" unique_id=1147830968]
 layout_mode = 3
 anchors_preset = 15
@@ -112,3 +118,28 @@ libraries/ = SubResource("AnimationLibrary_rmr83")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1021497856]
 stream = ExtResource("5_8uxxo")
 pitch_scale = 4.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=416707704]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -209.0
+offset_top = -188.0
+offset_right = -130.0
+offset_bottom = -116.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Soccer" type="Label" parent="VBoxContainer" unique_id=1751625185]
+layout_mode = 2
+text = "Soccer"
+label_settings = SubResource("LabelSettings_8uxxo")
+
+[node name="Boxing" type="Label" parent="VBoxContainer" unique_id=165032315]
+layout_mode = 2
+text = "Boxing"
+label_settings = SubResource("LabelSettings_ei257")

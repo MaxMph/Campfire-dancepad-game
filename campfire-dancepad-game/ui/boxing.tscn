@@ -6,6 +6,9 @@
 [ext_resource type="AudioStream" uid="uid://c8mqs6qcse6qh" path="res://sound/dragon-studio-correct-472358.mp3" id="2_i4iqw"]
 [ext_resource type="Script" uid="uid://5diyg2x2cp3p" path="res://ui/score.gd" id="3_2kq6x"]
 [ext_resource type="AudioStream" uid="uid://pfb5qw08dril" path="res://sound/freesound_community-wrong-47985.mp3" id="3_pa8ws"]
+[ext_resource type="Texture2D" uid="uid://bfl50ofd1hhpu" path="res://art/IMG_1317.png" id="7_c4uas"]
+[ext_resource type="Texture2D" uid="uid://dt008prjro2gy" path="res://art/IMG_7538.png" id="8_wsi33"]
+[ext_resource type="Texture2D" uid="uid://cwbortcddcn5x" path="res://art/IMG_7539.png" id="9_ehw7s"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_2kq6x"]
 font_size = 36
@@ -161,7 +164,25 @@ stream = ExtResource("2_i4iqw")
 stream = ExtResource("3_pa8ws")
 
 [node name="round timer" type="Timer" parent="." unique_id=559922903]
-wait_time = 15.0
+wait_time = 20.0
 one_shot = true
+
+[node name="Img1317" type="Sprite2D" parent="." unique_id=1597556803]
+position = Vector2(575, 214)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("7_c4uas")
+
+[node name="Node2D" type="Node2D" parent="." unique_id=444263202]
+
+[node name="punch" type="Sprite2D" parent="Node2D" unique_id=1362695232]
+position = Vector2(570, 400)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("8_wsi33")
+
+[node name="hit" type="Sprite2D" parent="Node2D" unique_id=1461922711]
+visible = false
+position = Vector2(576, 496.00003)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("9_ehw7s")
 
 [connection signal="timeout" from="round timer" to="grid" method="_on_round_timer_timeout"]
