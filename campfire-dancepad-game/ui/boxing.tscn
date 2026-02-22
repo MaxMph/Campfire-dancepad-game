@@ -1,0 +1,167 @@
+[gd_scene format=3 uid="uid://3mxfitb1t31d"]
+
+[ext_resource type="Script" uid="uid://dloym2gsk3q0d" path="res://scripts/grid_res/square.gd" id="1_hpvae"]
+[ext_resource type="Script" uid="uid://b6jqajxpo16s8" path="res://ui/boxing.gd" id="1_i4iqw"]
+[ext_resource type="PackedScene" uid="uid://5jwoo43xgdd1" path="res://points.tscn" id="2_2kq6x"]
+[ext_resource type="AudioStream" uid="uid://c8mqs6qcse6qh" path="res://sound/dragon-studio-correct-472358.mp3" id="2_i4iqw"]
+[ext_resource type="Script" uid="uid://5diyg2x2cp3p" path="res://ui/score.gd" id="3_2kq6x"]
+[ext_resource type="AudioStream" uid="uid://pfb5qw08dril" path="res://sound/freesound_community-wrong-47985.mp3" id="3_pa8ws"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_2kq6x"]
+font_size = 36
+
+[node name="boxing" type="Node2D" unique_id=1053027048]
+
+[node name="grid" type="Node" parent="." unique_id=931421490]
+script = ExtResource("1_i4iqw")
+points_ui = ExtResource("2_2kq6x")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=44967513]
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=712593941]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/Control" unique_id=327710928]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 3
+
+[node name="Panel" type="Panel" parent="CanvasLayer/Control/GridContainer" unique_id=2081086354]
+modulate = Color(18.892157, 0, 0, 1)
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+script = ExtResource("1_hpvae")
+grid_cords = Vector2i(1, 3)
+
+[node name="Panel2" type="Panel" parent="CanvasLayer/Control/GridContainer" unique_id=1893703219]
+modulate = Color(0.17937116, 0.17937116, 0.17937116, 1)
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+script = ExtResource("1_hpvae")
+grid_cords = Vector2i(2, 3)
+
+[node name="Panel3" type="Panel" parent="CanvasLayer/Control/GridContainer" unique_id=926482250]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+script = ExtResource("1_hpvae")
+grid_cords = Vector2i(3, 3)
+
+[node name="Panel4" type="Panel" parent="CanvasLayer/Control/GridContainer" unique_id=386056514]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+script = ExtResource("1_hpvae")
+grid_cords = Vector2i(1, 2)
+
+[node name="Panel5" type="Panel" parent="CanvasLayer/Control/GridContainer" unique_id=1778672081]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+script = ExtResource("1_hpvae")
+grid_cords = Vector2i(2, 2)
+
+[node name="Panel6" type="Panel" parent="CanvasLayer/Control/GridContainer" unique_id=1819984181]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+script = ExtResource("1_hpvae")
+grid_cords = Vector2i(3, 2)
+
+[node name="Panel7" type="Panel" parent="CanvasLayer/Control/GridContainer" unique_id=1738192942]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+script = ExtResource("1_hpvae")
+grid_cords = Vector2i(1, 1)
+
+[node name="Panel8" type="Panel" parent="CanvasLayer/Control/GridContainer" unique_id=190752250]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+script = ExtResource("1_hpvae")
+grid_cords = Vector2i(2, 1)
+
+[node name="Panel9" type="Panel" parent="CanvasLayer/Control/GridContainer" unique_id=1183583908]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+script = ExtResource("1_hpvae")
+grid_cords = Vector2i(3, 1)
+
+[node name="score" type="HBoxContainer" parent="CanvasLayer/Control" unique_id=1932289727]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = 41.0
+offset_right = 20.0
+offset_bottom = 81.0
+grow_horizontal = 2
+theme_override_constants/separation = 40
+alignment = 1
+script = ExtResource("3_2kq6x")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Control" unique_id=49444624]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.23921569, 0.6862745, 0.6862745, 1)
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/ColorRect" unique_id=382120009]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -21.5
+offset_top = -25.0
+offset_right = 21.5
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "p1"
+label_settings = SubResource("LabelSettings_2kq6x")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="time" type="Label" parent="CanvasLayer/Control" unique_id=790031548]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = 108.0
+offset_right = 20.0
+offset_bottom = 131.0
+grow_horizontal = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Node" type="Node" parent="." unique_id=1845318765]
+
+[node name="goal" type="AudioStreamPlayer" parent="Node" unique_id=1700539033]
+stream = ExtResource("2_i4iqw")
+
+[node name="miss" type="AudioStreamPlayer" parent="Node" unique_id=147590912]
+stream = ExtResource("3_pa8ws")
+
+[node name="round timer" type="Timer" parent="." unique_id=559922903]
+wait_time = 15.0
+one_shot = true
+
+[connection signal="timeout" from="round timer" to="grid" method="_on_round_timer_timeout"]

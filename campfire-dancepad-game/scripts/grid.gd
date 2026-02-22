@@ -104,6 +104,7 @@ func hit(square):
 		#if was_blocked  == true:
 			#break
 	
+	
 	if was_blocked == false:
 		#print("goal!")
 		#points += 1#points_per
@@ -129,6 +130,12 @@ func post_shot(hit = Vector2i.ZERO, scored = -1):
 		print(get_ui_square(hit).modulate)
 		
 	await get_tree().create_timer(1).timeout
+	
+	for i in $"../CanvasLayer/Control/score".get_children():
+		if i.points >= 4:
+			get_tree().change_scene_to_file("res://ui/main_menu.tscn")
+			return
+	
 	turn_intro()
 	#reset()
 	
@@ -146,7 +153,7 @@ func get_ui_square(cords: Vector2i):
 
 func show_blocked():
 	for z in $"../CanvasLayer/Control/GridContainer".get_children():
-		z.modulate = Color.WHITE
+		z.modulate =  Color.WHITE #Color(6.951, 3.662, 4.925) #Color(6.951, 0.004, 5.08)# Color.WHITE
 	
 	for i in blocked:
 		get_ui_square(i).modulate = Color.BLACK 
