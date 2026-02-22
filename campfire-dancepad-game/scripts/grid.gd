@@ -14,9 +14,20 @@ var blocked = []
 
 @export var points_ui: PackedScene
 
-var awaiting_input = true
+var awaiting_input = false
+var win_amount = 2
+#
+#func _ready() -> void:
+	#reset()
+	#turn_intro()
+	#for i in players:
+		#var new_points = points_ui.instantiate()
+		#new_points.player_num = i + 1
+		#$"../CanvasLayer/Control/score".add_child(new_points)
+	#
+	#color_scoreboard()
 
-func _ready() -> void:
+func start():
 	reset()
 	turn_intro()
 	for i in players:
@@ -30,7 +41,22 @@ func _process(delta: float) -> void:
 	if awaiting_input:
 		check_input()
 	$"../CanvasLayer/Control/time".text = str(roundi($"../round timer".time_left))
+	
+	if Input.is_action_just_pressed("select") or Input.is_action_just_pressed("start"):
+		if $"../CanvasLayer/Control/ColorRect2".visible:
+			get_tree().change_scene_to_file("res://ui/main_menu.tscn")
 
+func win_screen():
+	var winner = 0 #$"../CanvasLayer/Control/score".get_child(i).points
+	for i in players:
+		if $"../CanvasLayer/Control/score".get_child(i).points > $"../CanvasLayer/Control/score".get_child(winner).points:
+			winner = i
+	$"../CanvasLayer/Control/ColorRect2/VBoxContainer/scored points".text = ""
+	$"../CanvasLayer/Control/ColorRect2".show()
+	$"../CanvasLayer/Control/ColorRect2/VBoxContainer/win".text = "Player " + str(winner + 1) + " Won!"
+	for i in players:
+		$"../CanvasLayer/Control/ColorRect2/VBoxContainer/scored points".text += "Player " + str(i + 1) + ": " + str($"../CanvasLayer/Control/score".get_child(i).points) + "\n"
+	
 
 func reset():
 	rand_pose()
@@ -137,8 +163,9 @@ func post_shot(hit = Vector2i.ZERO, scored = -1):
 	$"../round timer".start()
 	
 	for i in $"../CanvasLayer/Control/score".get_children():
-		if i.points >= 4:
-			get_tree().change_scene_to_file("res://ui/main_menu.tscn")
+		if i.points >= win_amount:
+			win_screen()
+			#get_tree().change_scene_to_file("res://ui/main_menu.tscn")
 			return
 	
 	turn_intro()

@@ -14,11 +14,18 @@
 [ext_resource type="Texture2D" uid="uid://cofknliplcn5w" path="res://art/IMG_1316.png" id="12_ycdy4"]
 [ext_resource type="Texture2D" uid="uid://dijcqdlxvpdgq" path="res://art/soccer/IMG_7542.png" id="13_vivmo"]
 [ext_resource type="Texture2D" uid="uid://ca2d1uuhcyclq" path="res://art/soccer/IMG_6806.png" id="14_w48qg"]
+[ext_resource type="PackedScene" uid="uid://d1mvk5ddns0mu" path="res://player-selection.tscn" id="15_vivmo"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_dg77c"]
 font_size = 26
 
 [sub_resource type="LabelSettings" id="LabelSettings_272bh"]
+font_size = 36
+
+[sub_resource type="LabelSettings" id="LabelSettings_vivmo"]
+font_size = 60
+
+[sub_resource type="LabelSettings" id="LabelSettings_2cqfq"]
 font_size = 36
 
 [node name="ball game" type="Node2D" unique_id=1006754745]
@@ -169,6 +176,42 @@ label_settings = SubResource("LabelSettings_272bh")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="ColorRect2" type="ColorRect" parent="CanvasLayer/Control" unique_id=799709687]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.61960787)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/ColorRect2" unique_id=1233118335]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -54.5
+offset_top = -50.5
+offset_right = 54.5
+offset_bottom = 50.5
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="win" type="Label" parent="CanvasLayer/Control/ColorRect2/VBoxContainer" unique_id=1880278678]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_vivmo")
+
+[node name="scored points" type="Label" parent="CanvasLayer/Control/ColorRect2/VBoxContainer" unique_id=1578451009]
+layout_mode = 2
+text = "asdf"
+label_settings = SubResource("LabelSettings_2cqfq")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Node" type="Node" parent="." unique_id=774514042]
 
 [node name="goal" type="AudioStreamPlayer" parent="Node" unique_id=1127461130]
@@ -188,7 +231,7 @@ scale = Vector2(0.4, 0.4)
 texture = ExtResource("12_ycdy4")
 
 [node name="round timer" type="Timer" parent="." unique_id=918648683]
-wait_time = 6.0
+wait_time = 25.0
 one_shot = true
 
 [node name="Node2D" type="Node2D" parent="." unique_id=1453050037]
@@ -213,5 +256,12 @@ visible = false
 position = Vector2(-50, 394.99997)
 scale = Vector2(0.9, 0.9)
 texture = ExtResource("14_w48qg")
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=1759545340]
+layer = 2
+
+[node name="player-selection" parent="CanvasLayer2" unique_id=14772379 node_paths=PackedStringArray("grid") instance=ExtResource("15_vivmo")]
+position = Vector2(19, 2)
+grid = NodePath("../../grid")
 
 [connection signal="timeout" from="round timer" to="grid" method="_on_round_timer_timeout"]

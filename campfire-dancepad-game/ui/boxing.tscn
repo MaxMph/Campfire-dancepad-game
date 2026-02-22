@@ -11,6 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://ca0l6bj4d315y" path="res://sound/u_7xr5ffk4oq-opening-bell-421471.mp3" id="7_s7e7q"]
 [ext_resource type="Texture2D" uid="uid://dt008prjro2gy" path="res://art/IMG_7538.png" id="8_wsi33"]
 [ext_resource type="Texture2D" uid="uid://cwbortcddcn5x" path="res://art/IMG_7539.png" id="9_ehw7s"]
+[ext_resource type="PackedScene" uid="uid://d1mvk5ddns0mu" path="res://player-selection.tscn" id="12_s7e7q"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_2kq6x"]
 font_size = 36
@@ -233,7 +234,7 @@ stream = ExtResource("7_s7e7q")
 autoplay = true
 
 [node name="round timer" type="Timer" parent="." unique_id=559922903]
-wait_time = 6.0
+wait_time = 25.0
 one_shot = true
 
 [node name="Img1317" type="Sprite2D" parent="." unique_id=1597556803]
@@ -253,5 +254,12 @@ visible = false
 position = Vector2(576, 496.00003)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("9_ehw7s")
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=584376603]
+layer = 2
+
+[node name="player-selection" parent="CanvasLayer2" unique_id=14772379 node_paths=PackedStringArray("grid") instance=ExtResource("12_s7e7q")]
+position = Vector2(19, 2)
+grid = NodePath("../../grid")
 
 [connection signal="timeout" from="round timer" to="grid" method="_on_round_timer_timeout"]

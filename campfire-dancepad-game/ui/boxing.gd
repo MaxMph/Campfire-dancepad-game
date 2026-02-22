@@ -9,15 +9,23 @@ var target: Vector2i
 
 @export var points_ui: PackedScene
 
-var awaiting_input = true
+var awaiting_input = false
 
-func _ready() -> void:
+func start():
 	turn_intro()
 	for i in players:
 		var new_points = points_ui.instantiate()
 		new_points.player_num = i + 1
 		$"../CanvasLayer/Control/score".add_child(new_points)
 	$"../CanvasLayer/Control/score".color_scoreboard(turn)
+
+# func _ready() -> void:
+	#turn_intro()
+	#for i in players:
+		#var new_points = points_ui.instantiate()
+		#new_points.player_num = i + 1
+		#$"../CanvasLayer/Control/score".add_child(new_points)
+	#$"../CanvasLayer/Control/score".color_scoreboard(turn)
 
 func show_score():
 	pass

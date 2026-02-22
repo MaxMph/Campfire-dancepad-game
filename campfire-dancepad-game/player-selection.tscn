@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://bc2v6epyi1bhq"]
+[gd_scene format=3 uid="uid://d1mvk5ddns0mu"]
 
 [ext_resource type="Texture2D" uid="uid://3xnnkf8hev6l" path="res://art/image-bg.png" id="1_fw7fs"]
 [ext_resource type="FontFile" uid="uid://byhfb5v2g2cah" path="res://assets/Game Paused.otf" id="2_0v6m2"]
@@ -7,42 +7,69 @@
 [sub_resource type="GDScript" id="GDScript_8jhgu"]
 script/source = "extends Node2D
 
-var player_count: int = 1
+var player_count: int = 2
 const MIN_PLAYERS: int = 1
-const MAX_PLAYERS: int = 4
+const MAX_PLAYERS: int = 6
 
+@export var grid: Node
 @onready var count_label = $Label2
-@onready var add_area = $AddButton
-@onready var remove_area = $RemoveButton
+#@onready var add_area = $AddButton
+#@onready var remove_area = $RemoveButton
+
 
 func _ready():
 	update_label()
-	add_area.input_event.connect(_on_add_area_input)
-	remove_area.input_event.connect(_on_remove_area_input)
-	add_area.mouse_entered.connect(func(): $AddButton/ColorRect4.modulate = Color(1.3, 1.3, 1.3))
-	add_area.mouse_exited.connect(func(): $AddButton/ColorRect4.modulate = Color(1, 1, 1))
-	remove_area.mouse_entered.connect(func(): $RemoveButton/ColorRect3.modulate = Color(1.3, 1.3, 1.3))
-	remove_area.mouse_exited.connect(func(): $RemoveButton/ColorRect3.modulate = Color(1, 1, 1))
+	#add_area.input_event.connect(_on_add_area_input)
+	#remove_area.input_event.connect(_on_remove_area_input)
+	#add_area.mouse_entered.connect(func(): $AddButton/ColorRect4.modulate = Color(1.3, 1.3, 1.3))
+	#add_area.mouse_exited.connect(func(): $AddButton/ColorRect4.modulate = Color(1, 1, 1))
+	#remove_area.mouse_entered.connect(func(): $RemoveButton/ColorRect3.modulate = Color(1.3, 1.3, 1.3))
+	#remove_area.mouse_exited.connect(func(): $RemoveButton/ColorRect3.modulate = Color(1, 1, 1))
 
-func _on_add_area_input(viewport, event, shape_idx):
-	print(\"add area clicked\")
-	if event is InputEventMouseButton:
-		print(\"it's a mouse event\")
-		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-			if player_count < MAX_PLAYERS:
-				player_count += 1
-				update_label()
+#func _on_add_area_input(viewport, event, shape_idx):
+	#print(\"add area clicked\")
+	#if event is InputEventMouseButton:
+		#print(\"it's a mouse event\")
+		#if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			#if player_count < MAX_PLAYERS:
+				#player_count += 1
+				#update_label()
+#
+#func _on_remove_area_input(viewport, event, shape_idx):
+	#print(\"remove area clicked\")
+	#if event is InputEventMouseButton:
+		#if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			#if player_count > MIN_PLAYERS:
+				#player_count -= 1
+				#update_label()
 
-func _on_remove_area_input(viewport, event, shape_idx):
-	print(\"remove area clicked\")
-	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-			if player_count > MIN_PLAYERS:
-				player_count -= 1
-				update_label()
+
+
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed(\"middle_left\"):
+		add()
+	if Input.is_action_just_pressed(\"middle_right\"):
+		remove()
+	
+	if Input.is_action_just_pressed(\"start\"):
+		grid.start()
+		grid.players = player_count
+		queue_free()
+
 
 func update_label():
 	count_label.text = str(player_count)
+
+
+func remove():
+	if player_count < MAX_PLAYERS:
+		player_count += 1
+		update_label()
+
+func add():
+	if player_count > MIN_PLAYERS:
+		player_count -= 1
+		update_label()
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ooc05"]
@@ -50,13 +77,6 @@ size = Vector2(131, 54.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mqnc8"]
 size = Vector2(131, 124.75)
-
-[sub_resource type="GDScript" id="GDScript_ooc05"]
-script/source = "extends Button
-
-func _on_start_pressed():
-	get_tree().change_scene_to_file(\"res://scenes/main.tscn\")
-"
 
 [node name="player-selection" type="Node2D" unique_id=14772379]
 script = SubResource("GDScript_8jhgu")
@@ -130,13 +150,3 @@ offset_bottom = 527.0
 theme_override_fonts/font = ExtResource("3_0577m")
 theme_override_font_sizes/font_size = 238
 text = "1"
-
-[node name="Button" type="Button" parent="." unique_id=1175611249]
-offset_left = 394.0
-offset_top = 480.0
-offset_right = 702.0
-offset_bottom = 546.0
-theme_override_fonts/font = ExtResource("2_0v6m2")
-theme_override_font_sizes/font_size = 36
-text = "start the game!!!"
-script = SubResource("GDScript_ooc05")
