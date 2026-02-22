@@ -29,6 +29,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if awaiting_input:
 		check_input()
+	$"../CanvasLayer/Control/time".text = str(roundi($"../round timer".time_left))
 
 
 func reset():
@@ -50,6 +51,7 @@ func turn_intro():
 	await get_tree().create_timer(1.5).timeout
 	$"../CanvasLayer/Control/ColorRect".hide()
 	awaiting_input = true
+	$"../round timer".start()
 
 func color_scoreboard():
 	for i in $"../CanvasLayer/Control/score".get_children():
@@ -161,3 +163,8 @@ func show_blocked():
 		#for x in $"../CanvasLayer/Control/GridContainer".get_children():
 			#if i == x.grid_cords:
 				#x.modulate = Color.BLACK
+
+
+func _on_round_timer_timeout() -> void:
+	post_shot()
+	$"../Node/miss".play()

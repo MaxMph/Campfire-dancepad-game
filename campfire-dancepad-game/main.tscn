@@ -13,6 +13,9 @@
 [ext_resource type="Texture2D" uid="uid://bfl50ofd1hhpu" path="res://art/IMG_1317.png" id="11_dg77c"]
 [ext_resource type="Texture2D" uid="uid://cofknliplcn5w" path="res://art/IMG_1316.png" id="12_ycdy4"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_dg77c"]
+font_size = 26
+
 [sub_resource type="LabelSettings" id="LabelSettings_272bh"]
 font_size = 36
 
@@ -118,6 +121,23 @@ grow_horizontal = 2
 theme_override_constants/separation = 40
 alignment = 1
 
+[node name="time" type="Label" parent="CanvasLayer/Control" unique_id=1378438597]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -62.0
+offset_right = 20.0
+offset_bottom = -39.0
+grow_horizontal = 2
+grow_vertical = 0
+label_settings = SubResource("LabelSettings_dg77c")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer/Control" unique_id=1341847623]
 visible = false
 layout_mode = 1
@@ -163,3 +183,9 @@ texture = ExtResource("11_dg77c")
 position = Vector2(582, 349)
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("12_ycdy4")
+
+[node name="round timer" type="Timer" parent="." unique_id=918648683]
+wait_time = 6.0
+one_shot = true
+
+[connection signal="timeout" from="round timer" to="grid" method="_on_round_timer_timeout"]
